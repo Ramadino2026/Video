@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Still → Motion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="stage">
+    <header class="stage__header">
+      <span class="reel" aria-hidden="true"></span>
+      <h1>Still &rarr; Motion</h1>
+      <p class="subtitle">Upload a photo, describe how it should move, get back an 8-second clip.</p>
+    </header>
+
+    <section class="card" id="form-card">
+      <form id="generate-form">
+
+        <div class="field">
+          <label for="image-input">Image</label>
+          <div class="dropzone" id="dropzone">
+            <input type="file" id="image-input" name="image" accept="image/png, image/jpeg, image/webp" hidden />
+            <img id="preview" alt="" hidden />
+            <div class="dropzone__hint" id="dropzone-hint">
+              <span>Drop an image, or click to choose one</span>
+              <small>PNG, JPG or WEBP</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="prompt-input">Prompt</label>
+          <textarea
+            id="prompt-input"
+            name="prompt"
+            rows="3"
+            placeholder="e.g. slow dolly-in, hair drifting in the wind, soft late-afternoon light"
+            maxlength="500"
+          ></textarea>
+        </div>
+
+        <button type="submit" id="generate-btn">
+          <span class="btn-label">Generate 8s clip</span>
+          <span class="btn-spinner" hidden></span>
+        </button>
+
+        <p class="error" id="error-msg" hidden></p>
+      </form>
+    </section>
+
+    <section class="card card--result" id="result-card" hidden>
+      <div class="result-head">
+        <h2>Your clip</h2>
+        <span class="duration-badge">0:08</span>
+      </div>
+      <video id="result-video" controls loop playsinline></video>
+      <a id="download-link" download="clip.mp4">Download MP4</a>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
